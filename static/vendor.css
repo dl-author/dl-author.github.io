@@ -5650,11 +5650,16 @@ a.panel-block:hover {
 
 .hero.is-primary {
     background-color: #1fc8db;
-    color: #fff
+    color: #fff;
 }
 
 .hero.is-primary .title {
-    color: #fff
+    color: #fff;
+}
+
+.hero.is-primary h1.title {
+    letter-spacing: 3px;
+    font-family: 'Dancing Script', cursive;
 }
 
 .hero.is-primary .title a,
