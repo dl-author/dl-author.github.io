@@ -11,3 +11,9 @@ Change files as is and use `serve -s .` or another static site server.
 ## Hosting
 
 Hosted with github pages with custom domain from hoover.
+
+## Deployment
+
+Add your changes in the appropriate places. Images, JS, and CSS in the `static` folder. Reference statics with the relative path `static/file-name`.
+
+When you're ready to deploy, also push your changes to the deploy origin.
