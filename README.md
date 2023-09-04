@@ -2,7 +2,7 @@
 
 Site for DL.
 
-I forgot how it was initially create in 2015. I was asked to rehost the site for DL in July of 2018. I had swapped computer and wiped old hard drives. I recovered the site by save the page with all assets, and then fixing the paths to the assets to work on relative paths.
+I forgot how it was initially create in 2015. I was asked to rehost the site for DL in July of 2018. I had swapped computers and wiped old hard drives. I recovered the site by saving the page with all assets, and then fixing the paths to the assets to work on relative paths.
 
 ## Development
 
