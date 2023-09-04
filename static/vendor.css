@@ -1801,9 +1801,6 @@ a.box:active {
     border-color: #aeb1b5
 }
 
-.select select::ms-expand {
-    display: none
-}
 
 .select.is-fullwidth,
 .select.is-fullwidth select {
@@ -4262,7 +4259,7 @@ a.box:active {
 }
 
 @media screen and (max-width:768px) {
-    .level-item:not(: last-child) {
+    .level-item:not(:last-child) {
         margin-bottom: 10px
     }
 }
@@ -4930,7 +4927,7 @@ a.nav-item.is-tab.is-active {
 }
 
 @media screen and (min-width:769px) {
-    .pagination>a:not(: first-child) {
+    .pagination>a:not(:first-child) {
         order: 1
     }
 }

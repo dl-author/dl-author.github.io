@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Site for DL.",
   "scripts": {
+    "start": "parcel serve index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -14,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/dl-author/dl-author.github.io/issues"
   },
-  "homepage": "https://github.com/dl-author/dl-author.github.io#readme"
+  "homepage": "https://github.com/dl-author/dl-author.github.io#readme",
+  "dependencies": {
+    "parcel": "^2.9.3"
+  }
 }
