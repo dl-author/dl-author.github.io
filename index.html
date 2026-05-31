@@ -1,410 +1,717 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>LightLit&#174;</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LightLit® — David Levin, Author</title>
+    <meta name="description" content="Fictional works written by David Levin — Literature to illuminate the mind and warm the heart">
     <meta name="keywords" content="LightLit,literature,David Levin,Author,Coming of Age,Metaphysical Adventure,Satire">
     <meta property="og:url" content="http://www.lightlit.online">
     <meta property="og:title" content="David Levin, Author">
     <meta property="og:description" content="Fictional works written by David Levin">
     <meta property="og:site_name" content="LightLit">
-    <meta property="og:image" content="">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="en_US">
-    <meta name="twitter:card" content="David Levin is an attorney and an author of poetry, a non-fiction book, and six novels. He was born in the island city of Galveston, Texas, and is married with two sons.">
-    <link href="static/vendor.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Dancing+Script:700" rel="stylesheet"> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --paper: #e8e0d0;
+            --paper-light: #f0e9da;
+            --paper-dark: #d6cfc0;
+            --ink: #1a1714;
+            --ink-soft: #3a352e;
+            --ink-muted: #78716a;
+            --crimson: #9e2b1f;
+            --crimson-soft: #c44a3d;
+            --rule: #2c2517;
+            --rule-light: rgba(44, 37, 23, 0.2);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'EB Garamond', Georgia, serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.7;
+            font-size: 18px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Letterpress grain */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            opacity: 0.035;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        a {
+            color: var(--crimson);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        a:hover { color: var(--crimson-soft); }
+
+        ::selection {
+            background: var(--crimson);
+            color: var(--paper-light);
+        }
+
+        /* --- Nav --- */
+        nav.site-nav {
+            border-bottom: 2px solid var(--ink);
+            background: var(--paper-light);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        nav.site-nav ul {
+            max-width: 920px;
+            margin: 0 auto;
+            display: flex;
+            list-style: none;
+        }
+        nav.site-nav li {
+            flex: 1;
+        }
+        nav.site-nav a {
+            display: block;
+            text-align: center;
+            padding: 0.85rem 1rem;
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--ink);
+            border-right: 1px solid var(--rule-light);
+            transition: background 0.15s, color 0.15s;
+        }
+        nav.site-nav li:last-child a { border-right: none; }
+        nav.site-nav a:hover {
+            background: var(--ink);
+            color: var(--paper-light);
+        }
+
+        /* --- Hero --- */
+        .hero {
+            max-width: 920px;
+            margin: 0 auto;
+            padding: 5rem 2.5rem 4rem;
+            border-bottom: 2px solid var(--ink);
+            position: relative;
+        }
+        .hero-mark {
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: var(--crimson);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .hero-mark::before {
+            content: '';
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--crimson);
+        }
+        .hero h1 {
+            font-family: 'EB Garamond', serif;
+            font-size: clamp(3.5rem, 10vw, 6.5rem);
+            font-weight: 700;
+            line-height: 0.95;
+            color: var(--ink);
+            margin-bottom: 1.5rem;
+        }
+        .hero h1 em {
+            display: block;
+            font-style: normal;
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.22em;
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--ink-muted);
+            margin-top: 0.5rem;
+        }
+        .hero-tagline {
+            font-family: 'EB Garamond', serif;
+            font-size: 1.25rem;
+            font-style: italic;
+            color: var(--ink-soft);
+            max-width: 420px;
+            line-height: 1.6;
+        }
+
+        /* --- Section --- */
+        .section {
+            max-width: 920px;
+            margin: 0 auto;
+            padding: 3rem 2.5rem;
+            border-bottom: 1px solid var(--rule-light);
+        }
+        .section:last-of-type {
+            border-bottom: 2px solid var(--ink);
+        }
+        .section-heading {
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.35em;
+            color: var(--crimson);
+            margin-bottom: 2.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .section-heading::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--rule-light);
+        }
+
+        /* --- Book Entry --- */
+        .book {
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            gap: 2rem;
+            align-items: start;
+            padding: 2rem 0;
+            border-bottom: 1px dotted var(--rule-light);
+        }
+        .book:last-child { border-bottom: none; }
+
+        .book-cover {
+            position: relative;
+        }
+        .book-cover a {
+            display: block;
+            border: 2px solid var(--ink);
+            overflow: hidden;
+            transition: transform 0.15s ease;
+        }
+        .book-cover a:hover {
+            transform: rotate(-1deg) scale(1.02);
+        }
+        .book-cover img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+        .book-cover .imprint {
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.68rem;
+            color: var(--ink-muted);
+            margin-top: 0.4rem;
+            text-align: center;
+        }
+
+        .book-info { display: flex; flex-direction: column; }
+        .book-number {
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--ink-muted);
+            margin-bottom: 0.25rem;
+        }
+        .book-title {
+            font-family: 'EB Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            line-height: 1.15;
+            color: var(--ink);
+            margin-bottom: 0.15rem;
+        }
+        .book-series {
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.78rem;
+            color: var(--crimson);
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+        }
+        .book-desc {
+            font-size: 1rem;
+            line-height: 1.75;
+            color: var(--ink-soft);
+            margin-bottom: 1rem;
+            flex: 1;
+        }
+        .book-desc em { color: var(--ink); }
+        .book-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: auto;
+            padding-top: 0.75rem;
+        }
+        .book-genre {
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--ink-muted);
+        }
+        .book-buy {
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--crimson) !important;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border: 2px solid var(--crimson);
+            padding: 0.3rem 0.9rem;
+            transition: all 0.15s ease;
+        }
+        .book-buy:hover {
+            background: var(--crimson);
+            color: var(--paper-light) !important;
+        }
+
+        /* --- Podcast --- */
+        .podcast-card {
+            border: 2px solid var(--ink);
+            padding: 2.5rem;
+            text-align: center;
+        }
+        .podcast-card p {
+            font-family: 'EB Garamond', serif;
+            font-size: 1.15rem;
+            font-style: italic;
+            color: var(--ink-soft);
+            line-height: 1.65;
+            margin-bottom: 1.2rem;
+        }
+        .podcast-link {
+            display: inline-block;
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--paper-light) !important;
+            background: var(--ink);
+            padding: 0.65rem 1.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            transition: all 0.15s ease;
+        }
+        .podcast-link:hover {
+            background: var(--crimson);
+        }
+
+        /* --- About --- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+        .about-photo {
+            border: 2px solid var(--ink);
+        }
+        .about-photo img { display: block; width: 100%; height: auto; }
+        .about-text p {
+            color: var(--ink-soft);
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            line-height: 1.75;
+        }
+        .about-text p:last-child { margin-bottom: 0; }
+
+        /* --- Contact --- */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .contact-block {
+            text-align: center;
+            padding-top: 1rem;
+        }
+        .contact-block .label {
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.68rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            color: var(--ink-muted);
+            margin-bottom: 0.5rem;
+        }
+        .contact-block a {
+            font-family: 'EB Garamond', serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--crimson);
+        }
+
+        /* --- Footer --- */
+        footer {
+            max-width: 920px;
+            margin: 0 auto;
+            padding: 2rem 2.5rem 3rem;
+        }
+        .footer-rule {
+            border: none;
+            border-top: 2px solid var(--ink);
+            margin-bottom: 1.5rem;
+        }
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .footer-content p {
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.75rem;
+            color: var(--ink-muted);
+            letter-spacing: 0.05em;
+        }
+        .footer-content a {
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.75rem;
+            color: var(--ink-muted);
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 700px) {
+            nav.site-nav ul { flex-wrap: wrap; }
+            nav.site-nav a { font-size: 0.7rem; padding: 0.65rem 0.5rem; }
+            .hero { padding: 3rem 1.5rem 2.5rem; }
+            .hero h1 { font-size: 3rem; }
+            .section { padding: 2rem 1.5rem; }
+
+            .book {
+                grid-template-columns: 1fr;
+            }
+            .book-cover { max-width: 160px; margin: 0 auto; }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            .about-photo { max-width: 180px; margin: 0 auto; }
+            .contact-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+        }
+    </style>
 </head>
-
 <body>
-    <section class="hero is-large is-primary" id="Header">
-        <div class="hero-body has-text-centered">
-            <div class="container">
-                <h1 class="title is-1">LightLit&#174;</h1>
-                <h2 class="subtitle">Literature to illuminate the mind and warm the heart</h2>
-            </div>
-        </div>
-        <div class="hero-foot">
-            <nav class="nav">
-                <div class="nav-center">
-                    <a href="#About" class="nav-item">
-                        <h3 class="is-5 title">About</h3>
-                    </a>
-                    <a href="#Books" class="nav-item">
-                        <h3 class="is-5 title">Books</h3>
-                    </a>
-                    <a href="#Podcast" class="nav-item">
-                        <h3 class="is-5 title">Podcast</h3>
-                    </a>
-                    <a href="#Contact" class="nav-item">
-                        <h3 class="is-5 title">Contact</h3>
-                    </a>
-                </div>
-            </nav>
-        </div>
-    </section>
-    <section class="section" id="Books">
-        <div class="columns">
-            <div class="column is-8 is-offset-2">
-                <h1 class="title has-text-centered">Books</h1>
-                <section class="section">
-                    <div class="container">
-                        <h2 class="title">The Night of Nine</h2>
-                        <div class="columns">
-                            <div class="column is-three-quarters flex-column">
-                                <p class="content is-medium">
-                                    <u>The Night of Nine</u> is an anthology of poems the author has written to his beloved wife for special occasions plus other compositions with an animal theme. The final work is the namesake of the book. It is an epic poem about a young man's journey through life as he learns valuable lessons along the way. 
-                                </p>
-                                <p class="content is-medium"> Ordering links: <br/>Available on
-                                    <a href="https://www.amazon.com/Night-Nine-LightLit-Book-Poems-ebook/dp/B0F7GQ9ZSV" target="_blank">Kindle and Paperback</a>
-                                </p>
-                                <p class="column-foot subtitle flex-1 is-medium has-text-right"> Genre: Poetry </h2>
-                            </div>
-                            <div class="column has-text-centered">
-                                <a href="https://www.amazon.com/Night-Nine-LightLit-Book-Poems-ebook/dp/B0F7GQ9ZSV" target="_blank">
-                                    <img src="static/718To5SLEvL._SY466_.jpg" alt="The Night of Nine by David Levin"> 
-                                </a>
-                                <p class="content is-medium">A LightLit&#174; book.</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section class="section">
-                    <div class="container">
-                        <h2 class="title">Faith-building for Sissies</h2>
-                        <div class="columns">
-                            <div class="column has-text-centered">
-                                <a href="https://www.amazon.com/Faith-building-Sissies-David-Levin/dp/B0CGTJ7P43/ref=sr_1_1" target="_blank">
-                                    <img src="static/Faith-building-for-sissies-cover.jpg" alt="Faith-building for Sissies by David Levin"> 
-                                </a>
-                                <p class="content is-medium">A LightLit&#174; book.</p>
-                            </div>
-                            <div class="column is-three-quarters flex-column">
-                                <p class="content is-medium">
-                                    <u>Faith-building for Sissies</u> discusses our loss of faith in an ultimate, good being and the means we have to restore true faith using our minds to examine biblical and non-biblical evidence and answer the question, "Is it more likely than not that the Jesus story is true."
-                                <p class="content is-medium"> 
-                                    Ordering links: <br/>Available on
-                                    <a href="https://www.amazon.com/Faith-building-Sissies-David-Levin/dp/B0CGTJ7P43/ref=sr_1_1" target="_blank">Kindle and Paperback</a>
-                                </p>
-                                <p class="column-foot subtitle flex-1 is-medium"> Genre: Nonfiction, Religion, Science</h2>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section class="section">
-                    <div class="container">
-                        <h2 class="title">Fabulous</h2>
-                        <div class="columns">
-                            <div class="column is-three-quarters flex-column">
-                                <p class="content is-medium">
-                                    Fabulous University has risen to great academic height among American colleges and is
-                                    desperately seeking a successful head football coach to lift its program to the pinnacle of the
-                                    sport. However, the chairman of the Board of Regents is finding the search more difficult than
-                                    expected, leading him to more extreme measures to find the right person. Atom smashers,
-                                    quantum computers, one brilliant associate professor, a sleeper winning coach, competing
-                                    institutions, student athletes, intrigue, and a serious social development take the reader for an
-                                    entertaining, yet thought-provoking, ride through the story.
-                                <p class="content is-medium"> 
-                                    Ordering links: <br/>Available on
-                                    <a href=https://www.amazon.com/Fabulous-LightLit®-Book-David-Levin-ebook/dp/B08BY49K8H/" target="_blank">Kindle and Paperback</a>
-                                </p>
-                                <p class="column-foot subtitle flex-1 is-medium"> Genre: Comedy, Satire</h2>
-                            </div>
-                            <div class="column has-text-centered">
-                                <a href="https://www.amazon.com/Fabulous-LightLit®-Book-David-Levin-ebook/dp/B08BY49K8H/" target="_blank">
-                                    <img src="static/Fabulous-Cover.jpg" alt="Fabulous by David Levin"> 
-                                </a>
-                                <p class="content is-medium">A LightLit&#174; book.</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section class="section">
-                    <div class="container">
-                        <h2 class="title">Molly's Mission</h2>
-                        <div class="columns">
-                            <div class="column has-text-centered">
-                                <a href="https://www.amazon.com/Sine-Qua-Non-David-Levin-ebook/dp/B01N2KAYJ6" target="_blank">
-                                    <img src="static/mollys-mission.jpg" alt="Molly's Mission by David Levin"> </a>
-                                <p class="content is-medium">A LightLit&#174; book.</p>
-                            </div>
-                            <div class="column is-three-quarters flex-column">
-                                <p class="content is-medium">
-                                    <u>Molly's Mission</u>
-                                    is the science fiction sequel to <u>Phase Rider</u>. 
-                                    Molly Sorenson is the second person cured of Downs syndrome by genetic engineering,
-                                    after the <u>Phase Rider</u> protagonist, Bobby Alderson,
-                                    who volunteered to fly into deep space in an attempt to stop a phase transition from destroying the universe.
-                                    She is telepathically connected to Bobby because their unleashed minds are operating at superhuman levels.
-                                    Molly is on a mission to rescue Bobby and must overcome hostile aliens, black holes, gamma ray bursts,
-                                    and a dying star to succeed.
-                                </p>
-                                <p class="content is-medium"> Ordering links: <br/>Available on
-                                    <a href="https://www.amazon.com/dp/B085DP168Z/" target="_blank">Kindle and Paperback</a>
-                                </p>
-                                <p class="column-foot subtitle flex-1 is-medium"> Genre: Science Fiction</h2>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section class="section">
-                    <div class="container">
-                        <h2 class="title">Phase Rider</h2>
-                        <div class="columns">
-                            <div class="column is-three-quarters flex-column">
-                                <p class="content is-medium">
-                                    <u>Phase Rider</u>
-                                    is a science fiction book about genetic engineering that miraculously corrects mental retardation and an advanced technology spacecraft in which a newly-recruited astronaut travels faster than the speed of light to the edge of the cosmos in an improbable attempt to save the universe from destruction.</p>
-                                <p class="content is-medium"> Ordering links: <br/>Available on
-                                    <a href="https://www.amazon.com/Phase-Rider-LightLit®-David-Levin-ebook/dp/B07TX2T9MS" target="_blank">Kindle and Paperback</a>
-                                </p>
-                                <p class="column-foot subtitle flex-1 is-medium"> Genre: Science Fiction </h2>
-                            </div>
-                            <div class="column has-text-centered">
-                                <a href="https://www.amazon.com/Phase-Rider-LightLit®-David-Levin-ebook/dp/B07TX2T9MS" target="_blank">
-                                    <img src="static/Phase-Rider-Cover.jpg" alt="Phase Rider by David Levin"> </a>
-                                <p class="content is-medium">A LightLit&#174; book.</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section class="section">
-                    <div class="container">
-                        <h2 class="title">Sine Qua Non</h2>
-                        <div class="columns">
-                            <div class="column has-text-centered">
-                                <a href="https://www.amazon.com/Sine-Qua-Non-David-Levin-ebook/dp/B01N2KAYJ6" target="_blank">
-                                    <img src="static/Sine-Qua-Non.jpg" alt="Sine Qua Non by David Levin"> </a>
-                                <p class="content is-medium">A LightLit&#174; book.</p>
-                            </div>
-                            <div class="column is-three-quarters flex-column">
-                                <p class="content is-medium">
-                                    <u>Sine Qua Non</u>
-                                    is an exploration of the beginning and deterioration of human happiness. It examines the evidence for the existence, goodness,
-                                    and emotions of God, taking into account scientific arguments to the contrary. The book
-                                    is a hard-hitting argument for religious leaders' lack of true faith and provides a guide
-                                    to the restoration of wellbeing and resurrection. </p>
-                                <p class="content is-medium"> Ordering links: <br/>Available on
-                                    <a href="https://www.amazon.com/Sine-Qua-Non-David-Levin-ebook/dp/B01N2KAYJ6" target="_blank">Kindle and Paperback</a>
-                                </p>
-                                <p class="column-foot subtitle flex-1 is-medium"> Genre: Nonfiction, Religion, Science </h2>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section class="section">
-                    <div class="container">
-                        <h2 class="title">A Fracking Good Time</h2>
-                        <div class="columns">
-                            <div class="column is-three-quarters flex-column">
-                                <p class="content is-medium">
-                                    <u>A Fracking Good Time</u>
-                                    is a spoof about a brash Texas oil man who devises an improbable plan to dislodge England from bedrock and float it to the
-                                    Gulf of Mexico as a second Las Vegas. Conflict, panic, intrigue, politics, and international
-                                    conniving involve many characters from the royal family to the leaders of North Korea,
-                                    China, and Russia, as the Texan wheels and deals his way across the Atlantic. </p>
-                                <p class="content is-medium"> Ordering links: <br/>Available on
-                                    <a href="https://www.amazon.com/dp/B01LFKQFV6#nav-subnav" target="_blank">Kindle and Paperback</a>
-                                </p>
-                                <p class="column-foot subtitle flex-1 is-medium has-text-right"> Genre: Comedy, Satire </h2>
-                            </div>
-                            <div class="column has-text-centered">
-                                <a href="https://www.amazon.com/dp/B01LFKQFV6#nav-subnav" target="_blank">
-                                    <img src="static/A-Fracking-Good-Time-amazon.jpg" alt="A Fracking Good Time by David Levin"> </a>
-                                <p class="content is-medium">A LightLit&#174; book.</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section class="section">
-                    <div class="container">
-                        <h2 class="title">Promise</h2>
-                        <div class="columns">
-                            <div class="column has-text-centered">
-                                <a href="https://www.amazon.com/Promise-David-Levin-ebook/dp/B005IG5JOI/ref=asap_bc?ie=UTF8" target="_blank">
-                                    <img src="static/Promise-amazon.jpg" alt="Promise by David Levin"> </a>
-                                <p class="content is-medium">A LightLit&#174; book.</p>
-                            </div>
-                            <div class="column is-three-quarters flex-column">
-                                <p class="content is-medium">
-                                    <u>Promise</u>
-                                    is the story of a young woman’s struggle to overcome bullies and disadvantaged circumstances as she changes the world with
-                                    the help of a mysterious new friend. </p>
-                                
-                                <p class="content is-medium"> Ordering links: <br/>
-                                    Available on
-                                    <a href="https://www.amazon.com/Promise-David-Levin-ebook/dp/B005IG5JOI/ref=asap_bc?ie=UTF8" target="_blank">Kindle, Hardcover, and Paperback</a>
-                                </p>
-                                <p class="column-foot subtitle flex-1 is-medium"> Genre: Coming of Age </h2>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section class="section">
-                    <div class="container">
-                        <h2 class="title">Rue</h2>
-                        <div class="columns">
-                            <div class="column is-three-quarters flex-column">
-                                <p class="content is-medium">
-                                    <u>Rue</u>
-                                    is a story about a talented priest of color who battles to overcome racism, self doubt, and bigoted criminals to deliver a
-                                    miraculous cure. </p>
-                                <p class="content is-medium"> Ordering links: <br/>Available on
-                                    <a href="https://www.amazon.com/Rue-David-Levin-ebook/dp/B012H6OUPA/ref=asap_bc?ie=UTF8" target="_blank">Kindle and Paperback</a>
-                                </p>
-                                <p class="column-foot subtitle flex-1 is-medium has-text-right"> Genre: Metaphysical Mystery </h2>
-                            </div>
-                            <div class="column has-text-centered">
-                                <a href="https://www.amazon.com/Rue-David-Levin-ebook/dp/B012H6OUPA/ref=asap_bc?ie=UTF8" target="_blank">
-                                    <img src="static/Rue-amazon.jpg" alt="Rue by David Levin"> </a>
-                                <p class="content is-medium">A LightLit&#174; book.</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section class="section">
-                    <div class="container">
-                        <h2 class="title">Meatball Heaven</h2>
-                        <h2 class="subtitle">First book of three in the Scruffy Series</h2>
-                        <div class="columns">
-                            <div class="column has-text-centered">
-                                <a href="https://www.amazon.com/Meatball-Heaven-Scruffy-Book-1-ebook/dp/B00TNTLZLM/ref=asap_bc?ie=UTF8" target="_blank">
-                                    <img src="static/Meatball-Heaven-amazon.jpg" alt="Meatball Heaven by David Levin"> </a>
-                                <p class="content is-medium">A LightLit&#174; book.</p>
-                            </div>
-                            <div class="column is-three-quarters flex-column">
-                                <p class="content is-medium">
-                                    <u>Meatball Heaven</u>
-                                    tells the story of a child angel, whose soul enters a special dog, Scruffy, to challenge reptilian demons sent to terrorize
-                                    humans. FBI agent Mike Hardiss risks his career when he seeks Scruffy, believing the dog
-                                    is a paranormal savior. </p>
-                                <p class="content is-medium"> Ordering links: <br/>Available on
-                                    <a href="https://www.amazon.com/Meatball-Heaven-Scruffy-Book-1-ebook/dp/B00TNTLZLM/ref=asap_bc?ie=UTF8" target="_blank">Kindle and Paperback</a>
-                                </p>
-                                <p class="column-foot subtitle flex-1 is-medium"> Genre: Metaphysical Mystery </h2>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section class="section">
-                    <div class="container">
-                        <h2 class="title">Demon Dust</h2>
-                        <h2 class="subtitle">Second book of three in the Scruffy Series</h2>
-                        <div class="columns">
-                            <div class="column is-three-quarters flex-column">
-                                <p class="content is-medium">
-                                    <u>Demon Dust</u>
-                                    finds Scruffy and Mike Hardiss joining forces again to face the worst plague in history, a mass of demon microbes released
-                                    from hell to consume people, structures, modern weapons . . . the entire human race.
-                                </p>
-                                <p class="content is-medium"> Ordering links: <br/>Available on
-                                    <a href="https://www.amazon.com/Demon-Dust-Scruffy-Book-2-ebook/dp/B00LH5GCJ0/ref=asap_bc?ie=UTF8" target="_blank">Kindle and Paperback</a>
-                                </p>
-                                <p class="column-foot subtitle flex-1 is-medium has-text-right"> Genre: Metaphysical Mystery </h2>
-                            </div>
-                            <div class="column has-text-centered">
-                                <a href="https://www.amazon.com/Demon-Dust-Scruffy-Book-2-ebook/dp/B00LH5GCJ0/ref=asap_bc?ie=UTF8" target="_blank">
-                                    <img src="static/Demon-Dust-amazon.jpg" alt="Demon Dust by David Levin"> </a>
-                                <p class="content is-medium">A LightLit&#174; book.</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section class="section">
-                    <div class="container">
-                        <h2 class="title">The Demons of San Antonio</h2>
-                        <h2 class="subtitle">Third book of three in the Scruffy Series</h2>
-                        <div class="columns">
-                            <div class="column has-text-centered flex-column">
-                                <a href="https://www.amazon.com/Demons-San-Antonio-Scruffy-Book-ebook/dp/B00G2K1326/ref=asap_bc?ie=UTF8" target="_blank">
-                                    <img src="static/Demons-of-SA-amazon.jpg" alt="Demons of SA by David Levin"> </a>
-                                <p class="content is-medium">A LightLit&#174; book.</p>
-                            </div>
-                            <div class="column is-three-quarters flex-column">
-                                <p class="content is-medium">
-                                    <u>The Demons of San Antonio</u>
-                                    is the final episode of the Scruffy and Mike Hardiss partnership. They face bandito demons raised from west Texas by Satan,
-                                    who provides brimstone firearms to devastate all human resistance. </p>
-                                <p class="content is-medium"> Ordering links: <br/>Available on
-                                    <a href="https://www.amazon.com/Demons-San-Antonio-Scruffy-Book-ebook/dp/B00G2K1326/ref=asap_bc?ie=UTF8" target="_blank">Kindle and Paperback</a>
-                                </p>
-                                <p class="column-foot subtitle flex-1 is-medium"> Genre: Metaphysical Mystery </h2>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-        </div>
-    </section>
-    <section class="section" id="Podcast">
-        <h1 class="title has-text-centered">Podcasts by the Author</h1>
-        <div class="container">
-            <div class="columns">
-                <div class="column is-12">
-                    <p class="content is-medium has-text-centered">
-                        Visit us on <a href="https://anchor.fm/david-levin1" target="_blank" rel="noopener">Anchor</a> for readings of these books by the author.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="section" id="About">
-        <h1 class="title has-text-centered">About the Author</h1>
-        <section class="section">
-            <div class="container">
-                <div class="columns">
-                    <div class="column is-8 is-offset-2">
-                        <div class="columns">
-                            <div class="column is-two-thirds">
-                                <p class="content is-medium">
-                                    David Levin was born in the island city of Galveston. He is a Houston attorney whose practice has given him an intimate view of extreme life experiences. He uses this background to explore compelling storylines: life struggling to become free and to survive, people laboring under heart-wrenching despair, the negative side of historic institutions, irrational hatred, the morality of righteous force, and struggles between bipolar interests. His religious upbringing leads the author to have a sanguine outlook for human kind. He and his wife, Peggy, have two sons, four grandchildren, and sibling wheaten terriers.
-                                </p>
-                            </div>
-                            <div class="column is-one-third">
-                                <img src="static/levin-2.jpg" alt="David Levin and his dog"> </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </section>
-    <section class="section" id="Contact">
-        <h1 class="title has-text-centered">Contact David</h1>
-        <section class="section">
-            <div class="container">
-                <div class="columns">
-                    <div class="column is-8 is-offset-2">
-                        <nav class="level">
-                            <div class="level-item has-text-centered">
-                                <p class="subtitle"> Email </p>
-                                <p class="heading">
-                                    <a href="mailto:davidllevin@aol.com">davidllevin@aol.com</a>
-                                </p>
-                            </div>
-                            <div class="level-item has-text-centered">
-                                <p class="subtitle"> Amazon </p>
-                                <p class="heading">
-                                    <a href="https://www.amazon.com/David-Levin/e/B00AEDRG0U/ref=ntt_dp_epwbk_0" target="_blank">David Levin</a>
-                                </p>
-                            </div>
-                            <div class="level-item has-text-centered">
-                                <p class="subtitle"> Anchor </p>
-                                <p class="heading">
-                                    <a href="https://anchor.fm/david-levin1" target="_blank" rel="noopener">anchor.fm/david-levin1</a>
-                                </p>
-                            </div>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </section>
-    <script type="text/javascript" src="static/vendor.js"></script>
-</body>
 
+    <nav class="site-nav">
+        <ul>
+            <li><a href="#books">Books</a></li>
+            <li><a href="#podcast">Podcast</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero" id="top">
+        <div class="hero-mark">LightLit®</div>
+        <h1>David Levin<em>Author &amp; Storyteller</em></h1>
+        <p class="hero-tagline">Literature to illuminate the mind and warm the heart</p>
+    </header>
+
+    <main>
+        <section class="section" id="books">
+            <div class="section-heading">Books</div>
+
+            <article class="book">
+                <div class="book-cover">
+                    <a href="https://www.amazon.com/Night-Nine-LightLit-Book-Poems-ebook/dp/B0F7GQ9ZSV" target="_blank" rel="noopener">
+                        <img src="static/718To5SLEvL._SY466_.jpg" alt="The Night of Nine by David Levin">
+                    </a>
+                    <p class="imprint">LightLit®</p>
+                </div>
+                <div class="book-info">
+                    <h3 class="book-title">The Night of Nine</h3>
+                    <p class="book-desc">
+                        <em>The Night of Nine</em> is an anthology of poems the author has written to his beloved wife for special occasions plus other compositions with an animal theme. The final work is the namesake of the book — an epic poem about a young man's journey through life as he learns valuable lessons along the way.
+                    </p>
+                    <div class="book-footer">
+                        <span class="book-genre">Poetry</span>
+                        <a href="https://www.amazon.com/Night-Nine-LightLit-Book-Poems-ebook/dp/B0F7GQ9ZSV" target="_blank" rel="noopener" class="book-buy">Kindle & Paper →</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="book">
+                <div class="book-cover">
+                    <a href="https://www.amazon.com/Faith-building-Sissies-David-Levin/dp/B0CGTJ7P43/ref=sr_1_1" target="_blank" rel="noopener">
+                        <img src="static/Faith-building-for-sissies-cover.jpg" alt="Faith-building for Sissies by David Levin">
+                    </a>
+                    <p class="imprint">LightLit®</p>
+                </div>
+                <div class="book-info">
+                    <h3 class="book-title">Faith-building for Sissies</h3>
+                    <p class="book-desc">
+                        <em>Faith-building for Sissies</em> discusses our loss of faith in an ultimate, good being and the means we have to restore true faith using our minds to examine biblical and non-biblical evidence and answer the question, "Is it more likely than not that the Jesus story is true."
+                    </p>
+                    <div class="book-footer">
+                        <span class="book-genre">Nonfiction · Religion · Science</span>
+                        <a href="https://www.amazon.com/Faith-building-Sissies-David-Levin/dp/B0CGTJ7P43/ref=sr_1_1" target="_blank" rel="noopener" class="book-buy">Kindle & Paper →</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="book">
+                <div class="book-cover">
+                    <a href="https://www.amazon.com/Fabulous-LightLit®-Book-David-Levin-ebook/dp/B08BY49K8H/" target="_blank" rel="noopener">
+                        <img src="static/Fabulous-Cover.jpg" alt="Fabulous by David Levin">
+                    </a>
+                    <p class="imprint">LightLit®</p>
+                </div>
+                <div class="book-info">
+                    <h3 class="book-title">Fabulous</h3>
+                    <p class="book-desc">
+                        <em>Fabulous</em> University has risen to great academic height among American colleges and is desperately seeking a successful head football coach to lift its program to the pinnacle of the sport. However, the chairman of the Board of Regents is finding the search more difficult than expected, leading him to more extreme measures. Atom smashers, quantum computers, one brilliant associate professor, a sleeper winning coach, competing institutions, student athletes, intrigue, and a serious social development take the reader for an entertaining, yet thought-provoking, ride.
+                    </p>
+                    <div class="book-footer">
+                        <span class="book-genre">Comedy · Satire</span>
+                        <a href="https://www.amazon.com/Fabulous-LightLit®-Book-David-Levin-ebook/dp/B08BY49K8H/" target="_blank" rel="noopener" class="book-buy">Kindle & Paper →</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="book">
+                <div class="book-cover">
+                    <a href="https://www.amazon.com/dp/B085DP168Z/" target="_blank" rel="noopener">
+                        <img src="static/mollys-mission.jpg" alt="Molly's Mission by David Levin">
+                    </a>
+                    <p class="imprint">LightLit®</p>
+                </div>
+                <div class="book-info">
+                    <h3 class="book-title">Molly's Mission</h3>
+                    <p class="book-desc">
+                        <em>Molly's Mission</em> is the science fiction sequel to <em>Phase Rider</em>. Molly Sorenson is the second person cured of Downs syndrome by genetic engineering, after the <em>Phase Rider</em> protagonist, Bobby Alderson, who volunteered to fly into deep space in an attempt to stop a phase transition from destroying the universe. She is telepathically connected to Bobby because their unleashed minds are operating at superhuman levels. Molly is on a mission to rescue Bobby and must overcome hostile aliens, black holes, gamma ray bursts, and a dying star to succeed.
+                    </p>
+                    <div class="book-footer">
+                        <span class="book-genre">Science Fiction</span>
+                        <a href="https://www.amazon.com/dp/B085DP168Z/" target="_blank" rel="noopener" class="book-buy">Kindle & Paper →</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="book">
+                <div class="book-cover">
+                    <a href="https://www.amazon.com/Phase-Rider-LightLit®-David-Levin-ebook/dp/B07TX2T9MS" target="_blank" rel="noopener">
+                        <img src="static/Phase-Rider-Cover.jpg" alt="Phase Rider by David Levin">
+                    </a>
+                    <p class="imprint">LightLit®</p>
+                </div>
+                <div class="book-info">
+                    <h3 class="book-title">Phase Rider</h3>
+                    <p class="book-desc">
+                        <em>Phase Rider</em> is a science fiction book about genetic engineering that miraculously corrects mental retardation and an advanced technology spacecraft in which a newly-recruited astronaut travels faster than the speed of light to the edge of the cosmos in an improbable attempt to save the universe from destruction.
+                    </p>
+                    <div class="book-footer">
+                        <span class="book-genre">Science Fiction</span>
+                        <a href="https://www.amazon.com/Phase-Rider-LightLit®-David-Levin-ebook/dp/B07TX2T9MS" target="_blank" rel="noopener" class="book-buy">Kindle & Paper →</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="book">
+                <div class="book-cover">
+                    <a href="https://www.amazon.com/Sine-Qua-Non-David-Levin-ebook/dp/B01N2KAYJ6" target="_blank" rel="noopener">
+                        <img src="static/Sine-Qua-Non.jpg" alt="Sine Qua Non by David Levin">
+                    </a>
+                    <p class="imprint">LightLit®</p>
+                </div>
+                <div class="book-info">
+                    <h3 class="book-title">Sine Qua Non</h3>
+                    <p class="book-desc">
+                        <em>Sine Qua Non</em> is an exploration of the beginning and deterioration of human happiness. It examines the evidence for the existence, goodness, and emotions of God, taking into account scientific arguments to the contrary. The book is a hard-hitting argument for religious leaders' lack of true faith and provides a guide to the restoration of wellbeing and resurrection.
+                    </p>
+                    <div class="book-footer">
+                        <span class="book-genre">Nonfiction · Religion · Science</span>
+                        <a href="https://www.amazon.com/Sine-Qua-Non-David-Levin-ebook/dp/B01N2KAYJ6" target="_blank" rel="noopener" class="book-buy">Kindle & Paper →</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="book">
+                <div class="book-cover">
+                    <a href="https://www.amazon.com/dp/B01LFKQFV6#nav-subnav" target="_blank" rel="noopener">
+                        <img src="static/A-Fracking-Good-Time-amazon.jpg" alt="A Fracking Good Time by David Levin">
+                    </a>
+                    <p class="imprint">LightLit®</p>
+                </div>
+                <div class="book-info">
+                    <h3 class="book-title">A Fracking Good Time</h3>
+                    <p class="book-desc">
+                        <em>A Fracking Good Time</em> is a spoof about a brash Texas oil man who devises an improbable plan to dislodge England from bedrock and float it to the Gulf of Mexico as a second Las Vegas. Conflict, panic, intrigue, politics, and international conniving involve many characters from the royal family to the leaders of North Korea, China, and Russia, as the Texan wheels and deals his way across the Atlantic.
+                    </p>
+                    <div class="book-footer">
+                        <span class="book-genre">Comedy · Satire</span>
+                        <a href="https://www.amazon.com/dp/B01LFKQFV6#nav-subnav" target="_blank" rel="noopener" class="book-buy">Kindle & Paper →</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="book">
+                <div class="book-cover">
+                    <a href="https://www.amazon.com/Promise-David-Levin-ebook/dp/B005IG5JOI/ref=asap_bc?ie=UTF8" target="_blank" rel="noopener">
+                        <img src="static/Promise-amazon.jpg" alt="Promise by David Levin">
+                    </a>
+                    <p class="imprint">LightLit®</p>
+                </div>
+                <div class="book-info">
+                    <h3 class="book-title">Promise</h3>
+                    <p class="book-desc">
+                        <em>Promise</em> is the story of a young woman's struggle to overcome bullies and disadvantaged circumstances as she changes the world with the help of a mysterious new friend.
+                    </p>
+                    <div class="book-footer">
+                        <span class="book-genre">Coming of Age</span>
+                        <a href="https://www.amazon.com/Promise-David-Levin-ebook/dp/B005IG5JOI/ref=asap_bc?ie=UTF8" target="_blank" rel="noopener" class="book-buy">Kindle & Paper →</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="book">
+                <div class="book-cover">
+                    <a href="https://www.amazon.com/Rue-David-Levin-ebook/dp/B012H6OUPA/ref=asap_bc?ie=UTF8" target="_blank" rel="noopener">
+                        <img src="static/Rue-amazon.jpg" alt="Rue by David Levin">
+                    </a>
+                    <p class="imprint">LightLit®</p>
+                </div>
+                <div class="book-info">
+                    <h3 class="book-title">Rue</h3>
+                    <p class="book-desc">
+                        <em>Rue</em> is a story about a talented priest of color who battles to overcome racism, self doubt, and bigoted criminals to deliver a miraculous cure.
+                    </p>
+                    <div class="book-footer">
+                        <span class="book-genre">Metaphysical Mystery</span>
+                        <a href="https://www.amazon.com/Rue-David-Levin-ebook/dp/B012H6OUPA/ref=asap_bc?ie=UTF8" target="_blank" rel="noopener" class="book-buy">Kindle & Paper →</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="book">
+                <div class="book-cover">
+                    <a href="https://www.amazon.com/Meatball-Heaven-Scruffy-Book-1-ebook/dp/B00TNTLZLM/ref=asap_bc?ie=UTF8" target="_blank" rel="noopener">
+                        <img src="static/Meatball-Heaven-amazon.jpg" alt="Meatball Heaven by David Levin">
+                    </a>
+                    <p class="imprint">LightLit®</p>
+                </div>
+                <div class="book-info">
+                    <h3 class="book-title">Meatball Heaven</h3>
+                    <p class="book-series">Scruffy Series, Book One</p>
+                    <p class="book-desc">
+                        <em>Meatball Heaven</em> tells the story of a child angel, whose soul enters a special dog, Scruffy, to challenge reptilian demons sent to terrorize humans. FBI agent Mike Hardiss risks his career when he seeks Scruffy, believing the dog is a paranormal savior.
+                    </p>
+                    <div class="book-footer">
+                        <span class="book-genre">Metaphysical Mystery</span>
+                        <a href="https://www.amazon.com/Meatball-Heaven-Scruffy-Book-1-ebook/dp/B00TNTLZLM/ref=asap_bc?ie=UTF8" target="_blank" rel="noopener" class="book-buy">Kindle & Paper →</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="book">
+                <div class="book-cover">
+                    <a href="https://www.amazon.com/Demon-Dust-Scruffy-Book-2-ebook/dp/B00LH5GCJ0/ref=asap_bc?ie=UTF8" target="_blank" rel="noopener">
+                        <img src="static/Demon-Dust-amazon.jpg" alt="Demon Dust by David Levin">
+                    </a>
+                    <p class="imprint">LightLit®</p>
+                </div>
+                <div class="book-info">
+                    <h3 class="book-title">Demon Dust</h3>
+                    <p class="book-series">Scruffy Series, Book Two</p>
+                    <p class="book-desc">
+                        <em>Demon Dust</em> finds Scruffy and Mike Hardiss joining forces again to face the worst plague in history, a mass of demon microbes released from hell to consume people, structures, modern weapons — the entire human race.
+                    </p>
+                    <div class="book-footer">
+                        <span class="book-genre">Metaphysical Mystery</span>
+                        <a href="https://www.amazon.com/Demon-Dust-Scruffy-Book-2-ebook/dp/B00LH5GCJ0/ref=asap_bc?ie=UTF8" target="_blank" rel="noopener" class="book-buy">Kindle & Paper →</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="book">
+                <div class="book-cover">
+                    <a href="https://www.amazon.com/Demons-San-Antonio-Scruffy-Book-ebook/dp/B00G2K1326/ref=asap_bc?ie=UTF8" target="_blank" rel="noopener">
+                        <img src="static/Demons-of-SA-amazon.jpg" alt="The Demons of San Antonio by David Levin">
+                    </a>
+                    <p class="imprint">LightLit®</p>
+                </div>
+                <div class="book-info">
+                    <h3 class="book-title">The Demons of San Antonio</h3>
+                    <p class="book-series">Scruffy Series, Book Three</p>
+                    <p class="book-desc">
+                        <em>The Demons of San Antonio</em> is the final episode of the Scruffy and Mike Hardiss partnership. They face bandito demons raised from west Texas by Satan, who provides brimstone firearms to devastate all human resistance.
+                    </p>
+                    <div class="book-footer">
+                        <span class="book-genre">Metaphysical Mystery</span>
+                        <a href="https://www.amazon.com/Demons-San-Antonio-Scruffy-Book-ebook/dp/B00G2K1326/ref=asap_bc?ie=UTF8" target="_blank" rel="noopener" class="book-buy">Kindle & Paper →</a>
+                    </div>
+                </div>
+            </article>
+
+        </section>
+
+        <section class="section" id="podcast">
+            <div class="section-heading">Podcast</div>
+            <div class="podcast-card">
+                <p>Hear the author read from his own works — stories brought to life in his own voice.</p>
+                <a href="https://anchor.fm/david-levin1" target="_blank" rel="noopener" class="podcast-link">Listen on Anchor</a>
+            </div>
+        </section>
+
+        <section class="section" id="about">
+            <div class="section-heading">About</div>
+            <div class="about-grid">
+                <div class="about-photo">
+                    <img src="static/levin-2.jpg" alt="David Levin and his dog">
+                </div>
+                <div class="about-text">
+                    <p>David Levin was born in the island city of Galveston. He is a Houston attorney whose practice has given him an intimate view of extreme life experiences. He uses this background to explore compelling storylines: life struggling to become free and to survive, people laboring under heart-wrenching despair, the negative side of historic institutions, irrational hatred, the morality of righteous force, and struggles between bipolar interests.</p>
+                    <p>His religious upbringing leads the author to have a sanguine outlook for humankind. He and his wife, Peggy, have two sons, four grandchildren, and sibling wheaten terriers.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="contact">
+            <div class="section-heading">Contact</div>
+            <div class="contact-grid">
+                <div class="contact-block">
+                    <p class="label">Email</p>
+                    <a href="mailto:davidllevin@aol.com">davidllevin@aol.com</a>
+                </div>
+                <div class="contact-block">
+                    <p class="label">Amazon</p>
+                    <a href="https://www.amazon.com/David-Levin/e/B00AEDRG0U/ref=ntt_dp_epwbk_0" target="_blank" rel="noopener">Author Page</a>
+                </div>
+                <div class="contact-block">
+                    <p class="label">Podcast</p>
+                    <a href="https://anchor.fm/david-levin1" target="_blank" rel="noopener">anchor.fm/david-levin1</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <hr class="footer-rule">
+        <div class="footer-content">
+            <p>© David Levin</p>
+            <p>LightLit®</p>
+        </div>
+    </footer>
+
+</body>
 </html>
